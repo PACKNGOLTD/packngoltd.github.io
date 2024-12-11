@@ -1,0 +1,24 @@
+<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Orders</title>
+</head>
+<body>
+    <h1>Saved Orders</h1>
+    <div id="orders"></div>
+
+    <script>
+        const orders = JSON.parse(localStorage.getItem('orders')) || [];
+        const ordersDiv = document.getElementById('orders');
+        if (orders.length > 0) {
+            ordersDiv.innerHTML = '<ul>' + orders.map(order => 
+                <li>${order.customer} ordered ${order.quantity} of ${order.product}</li>
+            ).join('') + '</ul>';
+        } else {
+            ordersDiv.innerText = 'No orders yet.';
+        }
+    </script>
+</body>
+</html>
